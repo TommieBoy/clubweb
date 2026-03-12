@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KARC Prototype Home</title>
+  <meta name="description" content="Prototype homepage focused on story discovery and easy admin updates." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="logo" href="#" aria-label="Kamloops Amateur Radio Club home">
+      <span class="logo-mark">KARC</span>
+      <span class="logo-text">Kamloops Amateur Radio Club</span>
+    </a>
+    <nav class="main-nav" aria-label="Main">
+      <a href="#stories">Stories</a>
+      <a href="#events">Calendar</a>
+      <a href="#repeaters">Repeaters</a>
+      <a href="#about">About</a>
+      <a href="#join">Join</a>
+      <a href="#contact">Contact</a>
+      <a href="#resources">Resources</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Community stories and club updates</p>
+        <h1>Find the story you want in under a minute.</h1>
+        <p class="hero-copy">Search by keyword, browse by topic, or jump to the latest posts and upcoming events.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#stories">View All Stories</a>
+          <a class="btn btn-outline" href="#events">Open Calendar</a>
+        </div>
+      </div>
+      <aside class="search-panel" aria-label="Story search">
+        <h2>Story Finder</h2>
+        <label for="story-search">Search stories</label>
+        <input id="story-search" type="search" placeholder="Try: field day, emergency prep, repeater" />
+        <div class="topic-chips">
+          <button>Training</button>
+          <button>Events</button>
+          <button>Emergency Comms</button>
+          <button>Member Spotlight</button>
+          <button>Technical</button>
+        </div>
+      </aside>
+    </section>
+
+    <section class="featured" id="stories">
+      <article>
+        <p class="section-kicker">Featured Story</p>
+        <h2>Field Day 2026: Setup lessons and top contacts</h2>
+        <p>Our team logged a strong weekend from three temporary stations. Read the quick recap, gear list, and the checklist we will reuse next year.</p>
+        <div class="meta-row">
+          <span>June 28, 2026</span>
+          <span>Events</span>
+          <span>By VE7-Club Editor</span>
+        </div>
+        <a class="inline-link" href="#">Read featured story</a>
+      </article>
+      <div class="featured-art" aria-hidden="true"></div>
+    </section>
+
+    <section class="latest-stories" aria-label="Latest stories list">
+      <div class="section-head">
+        <h2>Latest Stories</h2>
+        <a href="#">See archive</a>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <p class="card-date">Mar 11, 2026</p>
+          <h3>New operator night drew 14 first-time check-ins</h3>
+          <p>Highlights and answers to the top five beginner questions from this month.</p>
+        </article>
+        <article class="card">
+          <p class="card-date">Mar 9, 2026</p>
+          <h3>Spring antenna workshop: what worked best</h3>
+          <p>A practical comparison of portable setups tested by members over the weekend.</p>
+        </article>
+        <article class="card">
+          <p class="card-date">Mar 6, 2026</p>
+          <h3>Repeater maintenance window and service notes</h3>
+          <p>Timeline, expected impact, and the post-maintenance results.</p>
+        </article>
+        <article class="card">
+          <p class="card-date">Mar 4, 2026</p>
+          <h3>Emergency prep net drill: after-action summary</h3>
+          <p>What went well and what we will tune before the next drill.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="events-admin" id="events">
+      <div class="events-block">
+        <div class="section-head">
+          <h2>Upcoming Events</h2>
+          <a href="#">Full calendar</a>
+        </div>
+        <ul class="event-list">
+          <li><strong>Mar 18</strong> Monthly club meeting, 7:00 PM, Heritage House</li>
+          <li><strong>Mar 25</strong> New operator Q and A net, 8:00 PM</li>
+          <li><strong>Apr 02</strong> Antenna basics workshop, 6:30 PM</li>
+          <li><strong>Apr 15</strong> Emergency comms practice net, 7:30 PM</li>
+        </ul>
+      </div>
+
+      <aside class="admin-panel" aria-label="Admin quick actions">
+        <h2>Admin Quick Actions</h2>
+        <p>Shortcuts for common updates that should take less than 5 minutes.</p>
+        <ul>
+          <li><a href="#">Add Story</a></li>
+          <li><a href="#">Add Event</a></li>
+          <li><a href="#">Edit Main Menu</a></li>
+          <li><a href="#">Set Featured Story</a></li>
+          <li><a href="#">Publish Announcement</a></li>
+        </ul>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Kamloops Amateur Radio Club</p>
+    <p>Keep stories current. Keep events visible. Keep navigation simple.</p>
+  </footer>
+</body>
+</html>
