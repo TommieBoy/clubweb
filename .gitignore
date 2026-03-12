@@ -1,0 +1,8 @@
+# Do not publish downloaded source-site copies
+snapshots/
+working/offline/
+working/index.html
+
+# Optional local artifacts
+*.log
+.DS_Store
