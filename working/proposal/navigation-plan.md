@@ -5,6 +5,7 @@
 - Help visitors find stories in 1-2 clicks.
 - Keep top navigation simple and task-focused.
 - Reduce admin effort by grouping low-use links.
+- Implement this navigation plan on Drupal 11.
 
 ## Proposed Main Navigation
 

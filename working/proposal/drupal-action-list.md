@@ -1,10 +1,16 @@
 # Drupal Action List (Exact Steps)
 
-This is a practical implementation path for a Drupal 7 style site like the current KARC homepage.
+This is a practical implementation path for rebuilding the current KARC homepage on Drupal 11.
+
+## Platform Decision
+
+- Required CMS target: Drupal 11
+- Any module/theme choice must be compatible with Drupal 11.
+- Prefer admin route paths below to avoid UI label differences between minor versions.
 
 ## 1. Main Navigation Cleanup
 
-Path: `Structure -> Menus -> Main menu -> List links`
+Admin path: `/admin/structure/menu/manage/main`
 
 1. Keep these top-level links only:
 - Stories
@@ -20,7 +26,7 @@ Path: `Structure -> Menus -> Main menu -> List links`
 
 ## 2. Story Content Type
 
-Path: `Structure -> Content types`
+Admin path: `/admin/structure/types`
 
 1. Create (or confirm) content type: `Story`.
 2. Add fields:
@@ -35,7 +41,7 @@ Path: `Structure -> Content types`
 
 ## 3. Event Content Type (Calendar Source)
 
-Path: `Structure -> Content types`
+Admin path: `/admin/structure/types`
 
 1. Create (or confirm) content type: `Event`.
 2. Add fields:
@@ -43,12 +49,15 @@ Path: `Structure -> Content types`
 - `field_event_end` (Date, optional)
 - `field_location` (Text)
 - `field_event_link` (Link)
+- `body` (Long text, optional details/agenda)
 3. Require title and start date.
-4. Keep one authoritative event node per event.
+4. Set `field_event_date` widget to date + time if meeting times matter.
+5. Keep one authoritative event node per event.
+6. Create one sample Event at `/node/add/event` and use it to verify the calendar hookup.
 
 ## 4. Views for Homepage Story Discovery
 
-Path: `Structure -> Views`
+Admin path: `/admin/structure/views`
 
 1. Create view: `featured_story`
 - Show: Content of type Story
@@ -74,7 +83,7 @@ Path: `Structure -> Views`
 
 ## 5. Place Blocks on Homepage
 
-Path: `Structure -> Blocks`
+Admin path: `/admin/structure/block`
 
 1. Assign regions on front page:
 - `featured_story` block near top content region
@@ -85,26 +94,29 @@ Path: `Structure -> Blocks`
 
 ## 6. Calendar Alignment
 
-Path: `Structure -> Views -> calendar`
+Admin path: `/admin/structure/views/view/calendar`
 
-1. Ensure calendar view source includes Event content type/date field.
-2. Keep mini calendar in sidebar; add `Full calendar` link near it.
-3. Confirm adding an Event node appears in both calendar and upcoming events block.
+1. Edit the calendar view to use `Content` as the base if needed.
+2. Add filter: `Content type = Event`.
+3. Map the calendar date source to `field_event_date`.
+4. Add title and date fields to the calendar display.
+5. Keep mini calendar in sidebar; add `Full calendar` link near it.
+6. Confirm adding an Event node appears in both calendar and upcoming events block.
 
 ## 7. Admin Shortcuts
 
-Path: `Structure -> Menus -> Management`
+Admin path: `/admin/config/user-interface/shortcut/manage/default`
 
 1. Add quick links for editors:
 - Add Story (`node/add/story`)
 - Add Event (`node/add/event`)
-- Edit Main Menu (`admin/structure/menu/manage/main-menu`)
+- Edit Main Menu (`admin/structure/menu/manage/main`)
 - Views (`admin/structure/views`)
 2. Save and test with editor role account.
 
 ## 8. Permissions
 
-Path: `People -> Permissions`
+Admin path: `/admin/people/permissions`
 
 1. Editor role:
 - Create/edit own Story and Event

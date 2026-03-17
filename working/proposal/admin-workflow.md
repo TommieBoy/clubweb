@@ -22,6 +22,7 @@ Allow non-technical admins to update stories, events, and navigation with minima
 - Location
 - Description
 - Related link
+- This content type is the only source for calendar entries.
 
 3. Announcement
 - Title
@@ -38,17 +39,18 @@ Allow non-technical admins to update stories, events, and navigation with minima
 ## Weekly Admin Routine
 
 1. Add new stories.
-2. Add or update event items.
+2. Add or update Event items so the calendar stays current.
 3. Confirm one featured story is selected.
 4. Check homepage blocks show expected items.
 5. Verify calendar entries display correctly.
 
 ## Update Paths
 
-- Stories: Content -> Add content -> Story
-- Events: Content -> Add content -> Event
-- Menus: Structure -> Menus -> Main navigation
-- Homepage blocks: Structure -> Views
+- Stories: `/node/add/story` (Content -> Add content -> Story)
+- Events: `/node/add/event` (Content -> Add content -> Event)
+- Menus: `/admin/structure/menu/manage/main` (Structure -> Menus -> Main navigation)
+- Homepage views: `/admin/structure/views` (Structure -> Views)
+- Permissions: `/admin/people/permissions` (People -> Permissions)
 
 ## Quality Checklist
 
