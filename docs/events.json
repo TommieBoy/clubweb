@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "title": "General Meeting",
+    "date": "2026-03-19",
+    "time": "19:00",
+    "location": "Kirsten's Hideout",
+    "description": "Regular monthly general meeting with agenda including repeater updates and FreeDV digital voice presentation.",
+    "category": "meeting"
+  },
+  {
+    "id": 2,
+    "title": "Winter Field Day",
+    "date": "2026-01-24",
+    "time": "09:00",
+    "location": "Knutsford site",
+    "description": "Full weekend operating event. Monitor 146.52 simplex and 147.32 repeater. Visitors welcome.",
+    "category": "event"
+  },
+  {
+    "id": 3,
+    "title": "Field Day Planning",
+    "date": "2026-06-12",
+    "time": "19:00",
+    "location": "Kirsten's Hideout",
+    "description": "General meeting with focus on summerField Day planning and site selection.",
+    "category": "meeting"
+  },
+  {
+    "id": 4,
+    "title": "Summer Field Day",
+    "date": "2026-06-27",
+    "time": "09:00",
+    "location": "Knutsford site",
+    "description": "Club participation in national Field Day operating event.",
+    "category": "event"
+  }
+]

@@ -5,21 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>KARC Story Hub Prototype</title>
   <meta name="description" content="Prototype homepage using archived KARC stories and practical club details." />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
   <div class="bg-grid" aria-hidden="true"></div>
 
   <header class="site-header">
     <a class="logo" href="#" aria-label="Kamloops Amateur Radio Club home">
-      <img class="logo-image" src="assets/karc-logo-100wide.png" alt="Kamloops Amateur Radio Club logo" />
+      <img class="logo-image" src="/prototype/assets/karc-logo-100wide.png" alt="Kamloops Amateur Radio Club logo" />
     </a>
     <nav class="main-nav" aria-label="Main">
-      <a href="stories.html">Stories</a>
-      <a href="#events">Calendar</a>
+      <a href="/prototype/stories.html">Stories</a>
       <a href="https://karc.ca/content/kamloops-and-area-amateur-radio-repeaters">Repeaters</a>
-      <a href="https://karc.ca/content/about-karc">About</a>
-      <a href="https://karc.ca/become_a_KARC_member">Join</a>
+      <a href="/prototype/about.html">About</a>
+      <a href="/prototype/join.html">Join</a>
       <a href="https://karc.ca/content/club-personnel">Contact</a>
       <a href="https://karc.ca/content/club-constitution">Resources</a>
     </nav>
@@ -32,8 +31,9 @@
         <h1>Club stories, repeater updates, and meeting notices in one place.</h1>
         <p class="hero-copy">Browse recent posts from the archived KARC site, then jump into membership, local repeaters, and upcoming club activity.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="stories.html">View All Stories</a>
+          <a class="btn btn-primary" href="/prototype/stories.html">View All Stories</a>
           <a class="btn btn-outline" href="#events">View Key Dates</a>
+          <a class="btn btn-outline" href="/admin/calendar.html">Event Update</a>
         </div>
       </div>
       <aside class="search-panel" aria-label="Story search">
@@ -60,7 +60,7 @@
           <span>Meetings</span>
           <span>By VA7AV</span>
         </div>
-        <a class="inline-link" href="stories.html#story-820">Read featured story</a>
+        <a class="inline-link" href="/prototype/stories.html#story-820">Read featured story</a>
       </article>
       <div class="featured-art" aria-hidden="true"></div>
     </section>
@@ -68,57 +68,43 @@
     <section class="latest-stories" aria-label="Latest stories list">
       <div class="section-head">
         <h2>Latest Stories</h2>
-        <a href="stories.html">See archive</a>
+        <a href="/prototype/stories.html">See archive</a>
       </div>
       <div class="cards">
         <article class="card">
           <p class="card-date">Wed, 2026-01-21</p>
-          <h3><a class="story-link" href="stories.html#story-819">Winter Field Day - January 24/25</a></h3>
+          <h3><a class="story-link" href="/prototype/stories.html#story-819">Winter Field Day - January 24/25</a></h3>
           <p>Club members operated from Peter's VE7DNZ farm, monitored 146.52 simplex and 147.32 repeater, and invited visitors to join the full weekend operation.</p>
         </article>
         <article class="card">
           <p class="card-date">Thu, 2026-01-15</p>
-          <h3><a class="story-link" href="stories.html#story-818">January Meeting and Winter Field Day Work Party</a></h3>
+          <h3><a class="story-link" href="/prototype/stories.html#story-818">January Meeting and Winter Field Day Work Party</a></h3>
           <p>Members met at Kirsten's Hideout and organized a site-prep work party in Knutsford before the Winter Field Day weekend.</p>
         </article>
         <article class="card">
           <p class="card-date">Wed, 2025-10-01</p>
-          <h3><a class="story-link" href="stories.html#story-815">Repeater maintenance window and service notes</a></h3>
+          <h3><a class="story-link" href="/prototype/stories.html#story-815">Repeater maintenance window and service notes</a></h3>
           <p>VE7TSI moved to Mt. Dufferin and VE7RKA on Greenstone was reconfigured. Analog access now requires PL tone 100 Hz on updated systems.</p>
         </article>
         <article class="card">
           <p class="card-date">Thu, 2025-05-08</p>
-          <h3><a class="story-link" href="stories.html#story-811">Jack Lyons VE7UC Awarded Lifetime Membership</a></h3>
+          <h3><a class="story-link" href="/prototype/stories.html#story-811">Jack Lyons VE7UC Awarded Lifetime Membership</a></h3>
           <p>In recognition of more than forty years of continued KARC membership, Jack VE7UC was awarded lifetime status.</p>
         </article>
       </div>
     </section>
 
-    <section class="events-admin" id="events">
-      <div class="events-block">
-        <div class="section-head">
-          <h2>Key Dates and Planning</h2>
-          <a href="https://karc.ca/node?mini=2026-03">Full calendar</a>
-        </div>
-        <ul class="event-list">
-          <li><strong>Feb 19</strong> General meeting at 7:00 PM, Kirsten's Hideout (online link available)</li>
-          <li><strong>Jan 24-25</strong> Winter Field Day weekend operation from the Knutsford site</li>
-          <li><strong>Jun 12</strong> General meeting with Field Day planning session</li>
-          <li><strong>Jun 28-29</strong> Field Day operating weekend (club planning target)</li>
-        </ul>
+    <section class="calendar-section" id="events">
+      <div class="section-head">
+        <h2>Club Calendar</h2>
+        <a href="/admin/calendar.html">Event Update →</a>
       </div>
-
-      <aside class="admin-panel" aria-label="Admin quick actions">
-        <h2>Quick Club Links</h2>
-        <p>Frequently used pages carried forward from the existing site navigation.</p>
-        <ul>
-          <li><a href="https://karc.ca/content/kamloops-and-area-amateur-radio-repeaters">Local Repeaters</a></li>
-          <li><a href="https://karc.ca/become_a_KARC_member">Club Membership</a></li>
-          <li><a href="https://karc.ca/content/nets">Nets</a></li>
-          <li><a href="https://karc.ca/galleries">Photo Albums</a></li>
-          <li><a href="https://karc.ca/classified">Swap and Shop</a></li>
-        </ul>
-      </aside>
+      <div class="calendar-container">
+        <div id="calendar" class="calendar"></div>
+        <div id="event-details" class="event-details">
+          <p class="placeholder">Click on a date with events to see details.</p>
+        </div>
+      </div>
     </section>
   </main>
 
@@ -126,5 +112,6 @@
     <p>Kamloops Amateur Radio Club</p>
     <p>Built from archived KARC content with simplified navigation and story-first discovery.</p>
   </footer>
+  <script src="/prototype/js/calendar.js"></script>
 </body>
 </html>

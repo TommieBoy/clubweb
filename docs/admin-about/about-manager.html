@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Manage About Page - KARC</title>
+  <style>
+    :root {
+      --accent: #c2410c;
+      --accent-2: #0f766e;
+      --ink: #1f1a14;
+      --line: #d6c8ae;
+      --bg: #f4efe2;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+    }
+    .wrap {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    .panel {
+      background: #fffaf0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    h1 { margin-top: 0; }
+    textarea {
+      width: 100%;
+      min-height: 60vh;
+      padding: 0.75rem;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+    .actions {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    button, a.btn {
+      display: inline-block;
+      border: 0;
+      border-radius: 6px;
+      padding: 0.65rem 1rem;
+      text-decoration: none;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-secondary { background: var(--accent-2); color: #fff; }
+    .msg {
+      margin-top: 0.6rem;
+      font-size: 0.95rem;
+      min-height: 1.3rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="panel">
+      <h1>About Page Manager</h1>
+      <p>Edit the About page HTML below and click Save. Changes go live immediately at <a href="/prototype/about.html" target="_blank" rel="noopener">/prototype/about.html</a>.</p>
+      <div class="actions">
+        <button id="reloadBtn" class="btn-secondary">Reload Current About Page</button>
+        <button id="saveBtn" class="btn-primary">Save About Page</button>
+      </div>
+      <p id="msg" class="msg"></p>
+    </div>
+
+    <div class="panel">
+      <textarea id="htmlEditor" spellcheck="false" aria-label="About page HTML editor"></textarea>
+    </div>
+  </div>
+
+  <script>
+    const editor = document.getElementById('htmlEditor');
+    const msg = document.getElementById('msg');
+
+    async function loadAbout() {
+      msg.textContent = 'Loading current About page...';
+      msg.style.color = '#1f1a14';
+      try {
+        const res = await fetch('/prototype/about.html', { cache: 'no-store' });
+        if (!res.ok) throw new Error('Failed to load About page.');
+        editor.value = await res.text();
+        msg.textContent = 'Loaded current About page.';
+      } catch (err) {
+        msg.textContent = err.message;
+        msg.style.color = '#991b1b';
+      }
+    }
+
+    async function saveAbout() {
+      msg.textContent = 'Saving...';
+      msg.style.color = '#1f1a14';
+      try {
+        const res = await fetch('/about-admin/save-about.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ html: editor.value })
+        });
+        const data = await res.json();
+        if (!res.ok || !data.success) {
+          throw new Error(data.error || 'Failed to save About page.');
+        }
+        msg.textContent = 'Saved successfully.';
+        msg.style.color = '#065f46';
+      } catch (err) {
+        msg.textContent = err.message;
+        msg.style.color = '#991b1b';
+      }
+    }
+
+    document.getElementById('reloadBtn').addEventListener('click', loadAbout);
+    document.getElementById('saveBtn').addEventListener('click', saveAbout);
+    loadAbout();
+  </script>
+</body>
+</html>
