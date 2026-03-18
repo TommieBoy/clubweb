@@ -29,19 +29,19 @@ if (!is_array($payload) || !isset($payload['html']) || !is_string($payload['html
   exit;
 }
 
-$joinFile = '/home/tom/clubweb/docs/join.html';
+$repeatersFile = '/home/tom/clubweb/docs/repeaters.html';
 
-if (!is_writable($joinFile)) {
+if (!is_writable($repeatersFile)) {
   http_response_code(500);
-  echo json_encode(['error' => 'Cannot write join.html']);
+  echo json_encode(['error' => 'Cannot write repeaters.html']);
   exit;
 }
 
-$current = file_get_contents($joinFile);
+$current = file_get_contents($repeatersFile);
 
 if ($current === false) {
   http_response_code(500);
-  echo json_encode(['error' => 'Failed to read join.html']);
+  echo json_encode(['error' => 'Failed to read repeaters.html']);
   exit;
 }
 
@@ -54,13 +54,13 @@ $updated = replacePageContent($current, $content);
 
 if ($updated === null) {
   http_response_code(500);
-  echo json_encode(['error' => 'Failed to update the editable Join page content']);
+  echo json_encode(['error' => 'Failed to update the editable Repeaters page content']);
   exit;
 }
 
-if (file_put_contents($joinFile, $updated) === false) {
+if (file_put_contents($repeatersFile, $updated) === false) {
   http_response_code(500);
-  echo json_encode(['error' => 'Failed to save join.html']);
+  echo json_encode(['error' => 'Failed to save repeaters.html']);
   exit;
 }
 

@@ -29,19 +29,19 @@ if (!is_array($payload) || !isset($payload['html']) || !is_string($payload['html
   exit;
 }
 
-$joinFile = '/home/tom/clubweb/docs/join.html';
+$resourcesFile = '/home/tom/clubweb/docs/resources.html';
 
-if (!is_writable($joinFile)) {
+if (!is_writable($resourcesFile)) {
   http_response_code(500);
-  echo json_encode(['error' => 'Cannot write join.html']);
+  echo json_encode(['error' => 'Cannot write resources.html']);
   exit;
 }
 
-$current = file_get_contents($joinFile);
+$current = file_get_contents($resourcesFile);
 
 if ($current === false) {
   http_response_code(500);
-  echo json_encode(['error' => 'Failed to read join.html']);
+  echo json_encode(['error' => 'Failed to read resources.html']);
   exit;
 }
 
@@ -54,13 +54,13 @@ $updated = replacePageContent($current, $content);
 
 if ($updated === null) {
   http_response_code(500);
-  echo json_encode(['error' => 'Failed to update the editable Join page content']);
+  echo json_encode(['error' => 'Failed to update the editable Resources page content']);
   exit;
 }
 
-if (file_put_contents($joinFile, $updated) === false) {
+if (file_put_contents($resourcesFile, $updated) === false) {
   http_response_code(500);
-  echo json_encode(['error' => 'Failed to save join.html']);
+  echo json_encode(['error' => 'Failed to save resources.html']);
   exit;
 }
 

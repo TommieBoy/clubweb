@@ -70,7 +70,7 @@
   <div class="wrap">
     <div class="panel">
       <h1>About Page Manager</h1>
-      <p>Edit the About page HTML below and click Save. Changes go live immediately at <a href="/prototype/about.html" target="_blank" rel="noopener">/prototype/about.html</a>.</p>
+      <p>Edit only the content inside the About page body below. The site header, navigation, footer, and styling shell are preserved automatically when you save to <a href="/prototype/about.html" target="_blank" rel="noopener">/prototype/about.html</a>.</p>
       <div class="actions">
         <button id="reloadBtn" class="btn-secondary">Reload Current About Page</button>
         <button id="saveBtn" class="btn-primary">Save About Page</button>
@@ -87,13 +87,18 @@
     const editor = document.getElementById('htmlEditor');
     const msg = document.getElementById('msg');
 
+    function extractPageContent(html) {
+      const match = html.match(/<div class="page-content">([\s\S]*?)<\/div>\s*<\/main>/i);
+      return match ? match[1].trim() : html;
+    }
+
     async function loadAbout() {
       msg.textContent = 'Loading current About page...';
       msg.style.color = '#1f1a14';
       try {
         const res = await fetch('/prototype/about.html', { cache: 'no-store' });
         if (!res.ok) throw new Error('Failed to load About page.');
-        editor.value = await res.text();
+        editor.value = extractPageContent(await res.text());
         msg.textContent = 'Loaded current About page.';
       } catch (err) {
         msg.textContent = err.message;

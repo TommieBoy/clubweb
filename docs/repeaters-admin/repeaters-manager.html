@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Manage Join Page - KARC</title>
+  <title>Manage Repeaters Page - KARC</title>
   <style>
     :root {
       --accent: #c2410c;
@@ -69,17 +69,17 @@
 <body>
   <div class="wrap">
     <div class="panel">
-      <h1>Join Page Manager</h1>
-      <p>Edit only the content inside the Join page body below. The site header, navigation, footer, and styling shell are preserved automatically when you save to <a href="/prototype/join.html" target="_blank" rel="noopener">/prototype/join.html</a>.</p>
+      <h1>Repeaters Page Manager</h1>
+      <p>Edit only the content inside the Repeaters page body below. The site header, navigation, footer, and styling shell are preserved automatically when you save to <a href="/prototype/repeaters.html" target="_blank" rel="noopener">/prototype/repeaters.html</a>.</p>
       <div class="actions">
-        <button id="reloadBtn" class="btn-secondary">Reload Current Join Page</button>
-        <button id="saveBtn" class="btn-primary">Save Join Page</button>
+        <button id="reloadBtn" class="btn-secondary">Reload Current Repeaters Page</button>
+        <button id="saveBtn" class="btn-primary">Save Repeaters Page</button>
       </div>
       <p id="msg" class="msg"></p>
     </div>
 
     <div class="panel">
-      <textarea id="htmlEditor" spellcheck="false" aria-label="Join page HTML editor"></textarea>
+      <textarea id="htmlEditor" spellcheck="false" aria-label="Repeaters page HTML editor"></textarea>
     </div>
   </div>
 
@@ -92,32 +92,32 @@
       return match ? match[1].trim() : html;
     }
 
-    async function loadJoin() {
-      msg.textContent = 'Loading current Join page...';
+    async function loadRepeaters() {
+      msg.textContent = 'Loading current Repeaters page...';
       msg.style.color = '#1f1a14';
       try {
-        const res = await fetch('/prototype/join.html', { cache: 'no-store' });
-        if (!res.ok) throw new Error('Failed to load Join page.');
+        const res = await fetch('/prototype/repeaters.html', { cache: 'no-store' });
+        if (!res.ok) throw new Error('Failed to load Repeaters page.');
         editor.value = extractPageContent(await res.text());
-        msg.textContent = 'Loaded current Join page.';
+        msg.textContent = 'Loaded current Repeaters page.';
       } catch (err) {
         msg.textContent = err.message;
         msg.style.color = '#991b1b';
       }
     }
 
-    async function saveJoin() {
+    async function saveRepeaters() {
       msg.textContent = 'Saving...';
       msg.style.color = '#1f1a14';
       try {
-        const res = await fetch('/join-admin/save-join.php', {
+        const res = await fetch('/repeaters-admin/save-repeaters.php', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ html: editor.value })
         });
         const data = await res.json();
         if (!res.ok || !data.success) {
-          throw new Error(data.error || 'Failed to save Join page.');
+          throw new Error(data.error || 'Failed to save Repeaters page.');
         }
         msg.textContent = 'Saved successfully.';
         msg.style.color = '#065f46';
@@ -127,9 +127,9 @@
       }
     }
 
-    document.getElementById('reloadBtn').addEventListener('click', loadJoin);
-    document.getElementById('saveBtn').addEventListener('click', saveJoin);
-    loadJoin();
+    document.getElementById('reloadBtn').addEventListener('click', loadRepeaters);
+    document.getElementById('saveBtn').addEventListener('click', saveRepeaters);
+    loadRepeaters();
   </script>
 </body>
 </html>

@@ -16,11 +16,11 @@
     </a>
     <nav class="main-nav" aria-label="Main">
       <a href="/prototype/stories.html">Stories</a>
-      <a href="https://karc.ca/content/kamloops-and-area-amateur-radio-repeaters">Repeaters</a>
+      <a href="/prototype/repeaters.html">Repeaters</a>
       <a href="/prototype/about.html">About</a>
       <a href="/prototype/join.html">Join</a>
-      <a href="https://karc.ca/content/club-personnel">Contact</a>
-      <a href="https://karc.ca/content/club-constitution">Resources</a>
+      <a href="/prototype/contact.html">Contact</a>
+      <a href="/prototype/resources.html">Resources</a>
     </nav>
   </header>
 
@@ -51,16 +51,16 @@
     </section>
 
     <section class="featured" id="stories">
-      <article>
-        <p class="section-kicker">Featured Story</p>
-        <h2>General Meeting - February 19th, 7 PM.</h2>
-        <p>The next general meeting is at Kirsten's Hideout. Agenda items include the future of VE7LGN and a short FreeDV digital voice presentation, with an online option for members who cannot attend in person.</p>
-        <div class="meta-row">
+      <article id="homepage-latest-story">
+        <p class="section-kicker" id="homepage-latest-kicker">Latest Story</p>
+        <h2 id="homepage-latest-title">General Meeting - February 19th, 7 PM.</h2>
+        <p id="homepage-latest-summary">The next general meeting is at Kirsten's Hideout. Agenda items include the future of VE7LGN and a short FreeDV digital voice presentation, with an online option for members who cannot attend in person.</p>
+        <div class="meta-row" id="homepage-latest-meta">
           <span>Mon, 2026-02-16</span>
           <span>Meetings</span>
           <span>By VA7AV</span>
         </div>
-        <a class="inline-link" href="/prototype/stories.html#story-820">Read featured story</a>
+        <a class="inline-link" id="homepage-latest-link" href="/prototype/stories.html#story-820">Read latest story</a>
       </article>
       <div class="featured-art" aria-hidden="true"></div>
     </section>
@@ -70,7 +70,7 @@
         <h2>Latest Stories</h2>
         <a href="/prototype/stories.html">See archive</a>
       </div>
-      <div class="cards">
+      <div class="cards" id="homepage-latest-cards">
         <article class="card">
           <p class="card-date">Wed, 2026-01-21</p>
           <h3><a class="story-link" href="/prototype/stories.html#story-819">Winter Field Day - January 24/25</a></h3>
@@ -112,6 +112,7 @@
     <p>Kamloops Amateur Radio Club</p>
     <p>Built from archived KARC content with simplified navigation and story-first discovery.</p>
   </footer>
+  <script src="/prototype/js/homepage-stories.js"></script>
   <script src="/prototype/js/calendar.js"></script>
 </body>
 </html>

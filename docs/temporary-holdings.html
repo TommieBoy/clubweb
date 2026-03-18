@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Temporary Holdings - KARC</title>
+  <meta name="description" content="Temporary holdings for stories pending review." />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="logo" href="/" aria-label="Kamloops Amateur Radio Club home">
+      <img class="logo-image" src="/prototype/assets/karc-logo-100wide.png" alt="Kamloops Amateur Radio Club logo" />
+    </a>
+    <nav class="main-nav" aria-label="Main">
+      <a href="/prototype/stories.html?update=1">Stories</a>
+      <a href="/prototype/repeaters.html">Repeaters</a>
+      <a href="/prototype/about.html">About</a>
+      <a href="/prototype/join.html">Join</a>
+      <a href="/prototype/contact.html">Contact</a>
+      <a href="/prototype/resources.html">Resources</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="latest-stories" aria-label="Temporary holdings">
+      <div class="section-head">
+        <h1>Temporary Holdings</h1>
+        <a href="/prototype/stories.html?update=1">Back to Stories Update</a>
+      </div>
+      <p class="hero-copy">Stories moved to this list are visible during admin update mode and can be restored or moved to calendar events.</p>
+    </section>
+
+    <section class="latest-stories" id="holdings-section">
+      <div id="holdings-list" class="cards"></div>
+      <p id="holdings-empty" class="hero-copy" style="display:none;">No stories in temporary holdings.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Kamloops Amateur Radio Club</p>
+    <p>Temporary holdings are admin-update mode only.</p>
+  </footer>
+
+  <script>
+    (async function () {
+      const isAdminMode = sessionStorage.getItem('storiesAdminUpdate') === '1' || new URLSearchParams(window.location.search).get('update') === '1';
+      if (!isAdminMode) {
+        document.getElementById('holdings-section').innerHTML = '<p class="hero-copy">This page is only visible in admin update mode.</p>';
+        return;
+      }
+
+      const listEl = document.getElementById('holdings-list');
+      const emptyEl = document.getElementById('holdings-empty');
+
+      async function post(action, story) {
+        const response = await fetch('/stories-admin/save-story-action.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action, story })
+        });
+        if (!response.ok) {
+          throw new Error('Admin action failed.');
+        }
+      }
+
+      function renderCard(story) {
+        const card = document.createElement('article');
+        card.className = 'card';
+        card.id = `holding-${story.id}`;
+        card.innerHTML = `
+          <p class="section-kicker">Story ${story.id}</p>
+          <h3>${story.title || ('Story ' + story.id)}</h3>
+          <p class="card-date">${story.meta || ''}</p>
+          <p class="story-body">${(story.body || '').slice(0, 320)}</p>
+        `;
+
+        const actions = document.createElement('div');
+        actions.className = 'hero-actions';
+
+        const restore = document.createElement('button');
+        restore.type = 'button';
+        restore.className = 'btn btn-outline';
+        restore.textContent = 'Restore to Stories';
+        restore.addEventListener('click', async () => {
+          await post('restore', story);
+          card.remove();
+          if (!listEl.children.length) emptyEl.style.display = 'block';
+        });
+
+        const move = document.createElement('button');
+        move.type = 'button';
+        move.className = 'btn btn-primary';
+        move.textContent = 'Move to Events';
+        move.addEventListener('click', async () => {
+          await post('move-events', story);
+          card.remove();
+          if (!listEl.children.length) emptyEl.style.display = 'block';
+        });
+
+        actions.appendChild(restore);
+        actions.appendChild(move);
+        card.appendChild(actions);
+        listEl.appendChild(card);
+      }
+
+      try {
+        const response = await fetch('/prototype/temporary-holdings.json', { cache: 'no-store' });
+        const holdings = response.ok ? await response.json() : [];
+
+        if (!Array.isArray(holdings) || holdings.length === 0) {
+          emptyEl.style.display = 'block';
+          return;
+        }
+
+        holdings.forEach(renderCard);
+      } catch (error) {
+        emptyEl.textContent = 'Unable to load holdings at this time.';
+        emptyEl.style.display = 'block';
+      }
+    })();
+  </script>
+</body>
+</html>

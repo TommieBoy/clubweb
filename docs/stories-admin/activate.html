@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stories Admin Mode - KARC</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <main class="page-content" style="padding-top: 2rem;">
+    <section class="about-section">
+      <h1>Stories Admin Mode</h1>
+      <p>You are authenticated as an admin. Continue to Stories Update Mode to review each story and choose:</p>
+      <ul class="activity-list">
+        <li>Keep Story</li>
+        <li>Move to Events</li>
+        <li>Look at Later</li>
+      </ul>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="/prototype/stories.html?update=1" id="enter-update">Enter Update Mode</a>
+        <a class="btn btn-outline" href="/prototype/temporary-holdings.html" id="open-holdings">Open Temporary Holdings</a>
+      </div>
+    </section>
+  </main>
+  <script>
+    sessionStorage.setItem('storiesAdminUpdate', '1');
+  </script>
+</body>
+</html>
